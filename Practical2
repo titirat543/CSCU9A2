@@ -1,0 +1,137 @@
+import java.util.Scanner;
+/**
+ * This program reads a student's marks into an array, discards the lowest mark,
+ * adds up the remaining marks and displays the average.
+ *
+ * It is an exercise in a top-down structured development of the methods in a program.
+ *
+ * @author SBJ Spring 2014
+ */
+public class Marks
+{
+    /**
+     * The launch method
+     *
+     * @param  args   Command line parameters - not used
+     */
+    public static void main(String[] args)
+    { // Step 1 - Break down the problem into subtasks
+        int numberOfMarks = readInteger("How many marks?");
+        int[] marks = new int[numberOfMarks];
+        readMarks(marks); //read all integer we input
+        discardLowestMark(marks);// find lowest marks and remove it
+        double average = averageTheMarksExceptTheLastOne(marks); //find average marks
+        System.out.println("The average mark is " + average);
+    }
+    /**
+     * Repeatedly read integers from the user, to fill all elements of the given marks array
+     *
+     * @param marks    An array of marks to be filled up
+     */
+    private static void readMarks(int[] marks) 
+    { // Step 1 - outline of subtask as a method
+        //assume
+        
+        for(int i=0;i<marks.length;i++){
+            
+            marks[i] = readInteger("Please enter the mark");//Use readInteger method to input the score we want
+            
+        }
+        
+        
+    }
+    // More methods need adding...
+    /**
+     * Remove the minimum masks from the user, 
+     * to fill all elements of the given marks array
+     *
+     * @param marks    An array of marks to be filled up
+     */
+    private static void discardLowestMark(int[] marks)
+    { // Step 1 - outline of subtask as a method
+        int position = findLowestMark(marks);//Use findLowestMark method to find the lowest score.
+        removeMark(position,marks);//Use removeMark method to find the position of the lowest score.
+        
+        
+}
+/**
+     * Find the minimum masks from the user, 
+     * to fill all elements of the given marks array
+     *
+     * @param marks    An array of marks to be filled up
+     */
+    private static int findLowestMark(int[] marks)
+    { // Step 1 - outline of subtask as a method
+       int smallest = marks[0]; // declare the  smallest value
+       for(int i =1 ; i < marks.length;i++ ){
+           if(marks[i]>smallest){
+            smallest = marks[i]; // show that which one is smallest score
+            }
+        }
+        return smallest;
+}
+/**
+     * Find the position which is a minimum masks from the user, 
+     * to fill all elements of the given marks array
+     *
+     * @param marks    An array of marks to be filled up
+     */
+    private static int removeMark(int Smallestposition,int[] marks)
+    { // Step 1 - outline of subtask as a method
+       
+        for (int i = 1; i < marks.length; i++)
+       {
+            if (marks[i] < marks[Smallestposition])
+           {
+               Smallestposition = i; // show the position of the smallest value
+            }
+         }
+         return Smallestposition;
+}
+
+
+    //next method
+    /**
+     * Remove the minimum masks from the user, 
+     * to fill all elements of the given marks array
+     *
+     * @param marks    An array of marks to be filled up
+     */
+    private static double averageTheMarksExceptTheLastOne(int[] marks)
+    { // Step 1 - outline of subtask as a method
+        double total = 0;
+        double average = 0;
+        for(int i =0;i < marks.length-1;i++)
+        {
+            total = total + marks[i]; //find the total after we reduce smallest one.
+            
+           
+        }
+        average = total / (marks.length-1);// find the average of scores we input in this program.
+        return average;
+        
+    }
+    
+    /**
+     * A standard method:
+     *
+     * Display the prompt and then read lines repeatedly until a valid integer is found, and
+     * return it.
+     *
+     * @param prompt   The prompt to be displayed
+     * @result         A valid integer
+     */
+    private static int readInteger(String prompt)
+    {
+        Scanner scan = new Scanner(System.in);
+        System.out.println(prompt);
+        while (!scan.hasNextInt()) // while non-integers are present...
+        {
+            scan.next();           //...read and discard input, then prompt again
+            System.out.println("Bad input. Please enter an integer");
+        }
+        int input = scan.nextInt();
+        return input;
+    }
+
+}
