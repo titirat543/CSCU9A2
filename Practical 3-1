@@ -1,0 +1,90 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.util.Scanner;
+
+/**
+ * This program displays an empty frame.
+ */
+public class SimpleFrame extends JFrame
+{
+    /**
+     * The main launcher method
+     */
+    public static void main(String[] args)
+    {
+        SimpleFrame frame = new SimpleFrame();
+
+        final int FRAME_WIDTH = 1000; //design the width of framework
+        final int FRAME_HEIGHT = 400; //design the height of framwork
+        final int FRAME_VERTICAL = 80; // point the location in y-axis
+        final int FRAME_HORIZON = 80;// point the location in x-axis
+       
+        frame.setSize(FRAME_WIDTH, FRAME_HEIGHT); //show the side of programe
+        frame.setTitle("Adding Integer"); //Show the title of application
+        frame.setLocation(FRAME_HORIZON,FRAME_VERTICAL); // show the location on the screen
+        frame.setVisible(true); //show on screen
+        frame.createGUI(); //call the funtional method
+       
+        
+        
+    }
+   
+    /**
+     * This method sets up the graphical user interface.
+     */
+    private void createGUI()
+    {
+        
+        
+        setDefaultCloseOperation(EXIT_ON_CLOSE); //use to close programe
+        Container window = getContentPane(); //
+        window.setLayout(new FlowLayout()); //show inside this programe
+        
+        JTextField one = new JTextField("               "); //show the input in the first integer.
+        one.setFont(new Font("Arial", Font.BOLD, 40)); // design the structure of text fields.
+        window.add(one); //show the text fields from integer 1
+        JTextField two = new JTextField("               ");//show the input in the second integer.
+        two.setFont(new Font("Arial", Font.BOLD, 40));// design the structure of text fields.
+        window.add(two);//show the text fields from integer 2
+        JTextField three = new JTextField("                                        ");//show the input in the sum of integer from two integer.
+        three.setFont(new Font("Arial", Font.BOLD, 40));// design the structure of text fields.
+        window.add(three);//show the text fields from integer 3
+        
+        Scanner scan = new Scanner(System.in); //scan two integers
+        int a = readInteger("a is"); //scan integer number 1
+        int b = readInteger("b is"); //scan integer number 2
+        int c = a+b;//declare value of c
+        one.setText("a is " + a); //display the  input values
+        two.setText("b is " + b);//display the two input values
+        three.setText("The sum is " + c);//display the sum of integer from two input values
+        
+    }
+    
+        
+    /**
+     * A standard method:
+     *
+     * Display the prompt and then read lines repeatedly until a valid integer is found, and
+     * return it.
+     *
+     * @param prompt   The prompt to be displayed
+     * @result         A valid integer
+     */
+    private static int readInteger(String prompt) //call the two integer to GUI method
+    {
+        Scanner scan = new Scanner(System.in);
+        System.out.println(prompt);
+        while (!scan.hasNextInt()) // while non-integers are present...
+        {
+            scan.next();           //...read and discard input, then prompt again
+            System.out.println("Bad input. Please enter an integer");
+        }
+        int input = scan.nextInt();
+        return input;
+    }
+
+     
+    
+
+}
